@@ -334,8 +334,8 @@ function Field({
 }: {
   id: string;
   label: string;
-  required?: boolean;
-  error?: string;
+  required?: boolean | undefined;
+  error?: string | undefined;
   children: React.ReactNode;
 }) {
   return (
