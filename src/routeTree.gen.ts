@@ -12,7 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as LeGarageRouteImport } from './routes/le-garage'
+import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
+import { Route as PolitiqueConfidentialiteRouteImport } from './routes/politique-confidentialite'
 import { Route as ZoneInterventionRouteImport } from './routes/zone-intervention'
+import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 
@@ -31,9 +34,25 @@ const LeGarageRoute = LeGarageRouteImport.update({
   path: '/le-garage',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
+  id: '/mentions-legales',
+  path: '/mentions-legales',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PolitiqueConfidentialiteRoute =
+  PolitiqueConfidentialiteRouteImport.update({
+    id: '/politique-confidentialite',
+    path: '/politique-confidentialite',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ZoneInterventionRoute = ZoneInterventionRouteImport.update({
   id: '/zone-intervention',
   path: '/zone-intervention',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesIndexRoute = ServicesIndexRouteImport.update({
@@ -51,7 +70,10 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
   '/le-garage': typeof LeGarageRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
+  '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
   '/zone-intervention': typeof ZoneInterventionRoute
+  '/admin/login': typeof AdminLoginRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/': typeof ServicesIndexRoute
 }
@@ -59,7 +81,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
   '/le-garage': typeof LeGarageRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
+  '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
   '/zone-intervention': typeof ZoneInterventionRoute
+  '/admin/login': typeof AdminLoginRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services': typeof ServicesIndexRoute
 }
@@ -68,7 +93,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
   '/le-garage': typeof LeGarageRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
+  '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
   '/zone-intervention': typeof ZoneInterventionRoute
+  '/admin/login': typeof AdminLoginRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/': typeof ServicesIndexRoute
 }
@@ -78,7 +106,10 @@ export interface FileRouteTypes {
     | '/'
     | '/contact'
     | '/le-garage'
+    | '/mentions-legales'
+    | '/politique-confidentialite'
     | '/zone-intervention'
+    | '/admin/login'
     | '/services/$slug'
     | '/services/'
   fileRoutesByTo: FileRoutesByTo
@@ -86,7 +117,10 @@ export interface FileRouteTypes {
     | '/'
     | '/contact'
     | '/le-garage'
+    | '/mentions-legales'
+    | '/politique-confidentialite'
     | '/zone-intervention'
+    | '/admin/login'
     | '/services/$slug'
     | '/services'
   id:
@@ -94,7 +128,10 @@ export interface FileRouteTypes {
     | '/'
     | '/contact'
     | '/le-garage'
+    | '/mentions-legales'
+    | '/politique-confidentialite'
     | '/zone-intervention'
+    | '/admin/login'
     | '/services/$slug'
     | '/services/'
   fileRoutesById: FileRoutesById
@@ -103,7 +140,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactRoute: typeof ContactRoute
   LeGarageRoute: typeof LeGarageRoute
+  MentionsLegalesRoute: typeof MentionsLegalesRoute
+  PolitiqueConfidentialiteRoute: typeof PolitiqueConfidentialiteRoute
   ZoneInterventionRoute: typeof ZoneInterventionRoute
+  AdminLoginRoute: typeof AdminLoginRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
 }
@@ -131,11 +171,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LeGarageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mentions-legales': {
+      id: '/mentions-legales'
+      path: '/mentions-legales'
+      fullPath: '/mentions-legales'
+      preLoaderRoute: typeof MentionsLegalesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politique-confidentialite': {
+      id: '/politique-confidentialite'
+      path: '/politique-confidentialite'
+      fullPath: '/politique-confidentialite'
+      preLoaderRoute: typeof PolitiqueConfidentialiteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/zone-intervention': {
       id: '/zone-intervention'
       path: '/zone-intervention'
       fullPath: '/zone-intervention'
       preLoaderRoute: typeof ZoneInterventionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/': {
@@ -159,7 +220,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactRoute: ContactRoute,
   LeGarageRoute: LeGarageRoute,
+  MentionsLegalesRoute: MentionsLegalesRoute,
+  PolitiqueConfidentialiteRoute: PolitiqueConfidentialiteRoute,
   ZoneInterventionRoute: ZoneInterventionRoute,
+  AdminLoginRoute: AdminLoginRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   ServicesIndexRoute: ServicesIndexRoute,
 }
