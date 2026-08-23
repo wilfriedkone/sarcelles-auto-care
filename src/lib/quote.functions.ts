@@ -1,17 +1,16 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getRequestIP } from "@tanstack/react-start/server";
 
-import { quoteSchema, type QuoteInput } from "./quote-schema";
+import { quoteSchema, MAX as MAXLEN, type QuoteInput } from "./quote-schema";
 import {
   buildReference,
   collapse,
   hashIp,
-  MAXLEN,
   normalizeEmail,
   normalizePhone,
   notifyByEmail,
   verifyTurnstile,
-} from "./quote.helpers";
+} from "./quote.server";
 
 export const submitQuoteRequest = createServerFn({ method: "POST" })
   .inputValidator((data: QuoteInput & { turnstileToken?: string }) => data)
