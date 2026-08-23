@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as LeGarageRouteImport } from './routes/le-garage'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
@@ -18,10 +19,15 @@ import { Route as ZoneInterventionRouteImport } from './routes/zone-intervention
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
+import { Route as AuthenticatedAdminDemandesRouteImport } from './routes/_authenticated/admin.demandes'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -65,6 +71,12 @@ const ServicesSlugRoute = ServicesSlugRouteImport.update({
   path: '/services/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminDemandesRoute =
+  AuthenticatedAdminDemandesRouteImport.update({
+    id: '/admin/demandes',
+    path: '/admin/demandes',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -76,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/admin/login': typeof AdminLoginRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/': typeof ServicesIndexRoute
+  '/admin/demandes': typeof AuthenticatedAdminDemandesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -87,10 +100,12 @@ export interface FileRoutesByTo {
   '/admin/login': typeof AdminLoginRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services': typeof ServicesIndexRoute
+  '/admin/demandes': typeof AuthenticatedAdminDemandesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/contact': typeof ContactRoute
   '/le-garage': typeof LeGarageRoute
   '/mentions-legales': typeof MentionsLegalesRoute
@@ -99,6 +114,7 @@ export interface FileRoutesById {
   '/admin/login': typeof AdminLoginRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/': typeof ServicesIndexRoute
+  '/_authenticated/admin/demandes': typeof AuthenticatedAdminDemandesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -112,6 +128,7 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/services/$slug'
     | '/services/'
+    | '/admin/demandes'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -123,9 +140,11 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/services/$slug'
     | '/services'
+    | '/admin/demandes'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/contact'
     | '/le-garage'
     | '/mentions-legales'
@@ -134,10 +153,12 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/services/$slug'
     | '/services/'
+    | '/_authenticated/admin/demandes'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   ContactRoute: typeof ContactRoute
   LeGarageRoute: typeof LeGarageRoute
   MentionsLegalesRoute: typeof MentionsLegalesRoute
@@ -155,6 +176,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -213,11 +241,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin/demandes': {
+      id: '/_authenticated/admin/demandes'
+      path: '/admin/demandes'
+      fullPath: '/admin/demandes'
+      preLoaderRoute: typeof AuthenticatedAdminDemandesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminDemandesRoute: typeof AuthenticatedAdminDemandesRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminDemandesRoute: AuthenticatedAdminDemandesRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   ContactRoute: ContactRoute,
   LeGarageRoute: LeGarageRoute,
   MentionsLegalesRoute: MentionsLegalesRoute,
