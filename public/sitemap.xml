@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TODO : préfixez chaque <loc> par l'URL finale du site (ex. https://dskauto95.fr) avant publication. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>/</loc><priority>1.0</priority></url>
+  <url><loc>/services</loc><priority>0.9</priority></url>
+  <url><loc>/services/mecanique-generale</loc><priority>0.8</priority></url>
+  <url><loc>/services/diagnostic-electronique</loc><priority>0.8</priority></url>
+  <url><loc>/services/pannes-electriques</loc><priority>0.8</priority></url>
+  <url><loc>/services/codage-reprogrammation-ecu</loc><priority>0.8</priority></url>
+  <url><loc>/services/cles-vehicules</loc><priority>0.8</priority></url>
+  <url><loc>/services/entretien-vidange-freinage</loc><priority>0.8</priority></url>
+  <url><loc>/services/climatisation</loc><priority>0.8</priority></url>
+  <url><loc>/services/pre-controle-technique</loc><priority>0.8</priority></url>
+  <url><loc>/services/achat-vente-vehicules</loc><priority>0.8</priority></url>
+  <url><loc>/le-garage</loc><priority>0.7</priority></url>
+  <url><loc>/zone-intervention</loc><priority>0.7</priority></url>
+  <url><loc>/contact</loc><priority>0.9</priority></url>
+  <url><loc>/mentions-legales</loc><priority>0.2</priority></url>
+  <url><loc>/politique-confidentialite</loc><priority>0.2</priority></url>
+</urlset>
