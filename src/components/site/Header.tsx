@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, Phone, X } from "lucide-react";
+import { Clock, MapPin, Menu, Phone, X } from "lucide-react";
 import { useState } from "react";
 
 import logo from "@/assets/dsk-logo.webp";
@@ -19,6 +19,28 @@ export function Header() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/70 bg-background/95 backdrop-blur">
+      {/* Barre d'infos (ordinateur) */}
+      <div className="hidden h-9 border-b border-border/70 bg-card text-[13px] text-muted-foreground lg:block">
+        <div className="mx-auto flex h-full max-w-7xl items-center justify-between gap-6 px-4">
+          <div className="flex items-center gap-6">
+            <span className="flex items-center gap-2">
+              <MapPin className="size-3.5 text-primary" aria-hidden="true" />
+              {site.address.full}
+            </span>
+            <span className="flex items-center gap-2">
+              <Clock className="size-3.5 text-primary" aria-hidden="true" />
+              {site.hoursLabel.replace("Horaires : ", "")}
+            </span>
+          </div>
+          <div className="flex items-center gap-5">
+            {site.contacts.map((c) => (
+              <a key={c.tel} href={`tel:${c.tel}`} className="hover:text-foreground">
+                {c.name} {c.phone}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4">
         <Link
           to="/"
@@ -56,11 +78,14 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button asChild size="sm" className="hidden sm:inline-flex">
+          <Button asChild size="sm" variant="outline" className="hidden h-10 sm:inline-flex">
             <a href={`tel:${primaryContact.tel}`}>
               <Phone className="size-4" aria-hidden="true" />
               Appeler
             </a>
+          </Button>
+          <Button asChild size="sm" className="hidden h-10 md:inline-flex">
+            <Link to="/contact">Demander un devis</Link>
           </Button>
           <button
             type="button"

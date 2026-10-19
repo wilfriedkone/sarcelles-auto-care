@@ -199,6 +199,68 @@
   .animate-rise {
     animation: rise 0.6s ease-out both;
   }
+
+  /* --- Mouvement ------------------------------------------------------- */
+
+  /* Zoom lent façon caméra sur les photos de fond */
+  .animate-kenburns {
+    animation: dsk-kenburns 18s ease-in-out infinite alternate;
+  }
+
+  /* Entrée en cascade au chargement (combiner avec .enter-delay-*) */
+  .animate-enter {
+    opacity: 0;
+    animation: dsk-enter 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  }
+  .enter-delay-1 { animation-delay: 0.1s; }
+  .enter-delay-2 { animation-delay: 0.25s; }
+  .enter-delay-3 { animation-delay: 0.4s; }
+  .enter-delay-4 { animation-delay: 0.55s; }
+  .enter-delay-5 { animation-delay: 0.7s; }
+
+  /* Bande défilante : le contenu est dupliqué, on décale de 50 % */
+  .animate-marquee {
+    animation: dsk-marquee 32s linear infinite;
+  }
+  .group:hover .animate-marquee {
+    animation-play-state: paused;
+  }
+
+  .animate-spin-slow {
+    animation: dsk-spin-slow 40s linear infinite;
+  }
+
+  .animate-ping-dot {
+    animation: dsk-ping-dot 1.6s ease-out infinite;
+  }
+
+  .animate-float {
+    animation: dsk-float 5s ease-in-out infinite;
+  }
+
+  /* Reflet lumineux qui balaie un bouton */
+  .shine {
+    position: relative;
+    overflow: hidden;
+  }
+  .shine::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 40%;
+    background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.35), transparent);
+    animation: dsk-shine 3.2s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  /* Apparition au défilement (navigateurs compatibles ; sinon simplement visible) */
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: dsk-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 28%;
+    }
+  }
 }
 
 @keyframes rise {
@@ -212,9 +274,54 @@
   }
 }
 
+@keyframes dsk-kenburns {
+  from { transform: scale(1.02) translate(0, 0); }
+  to { transform: scale(1.14) translate(-2%, -1%); }
+}
+
+@keyframes dsk-enter {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes dsk-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes dsk-spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes dsk-ping-dot {
+  0% { box-shadow: 0 0 0 0 oklch(0.65 0.22 29 / 0.6); }
+  80%, 100% { box-shadow: 0 0 0 10px oklch(0.65 0.22 29 / 0); }
+}
+
+@keyframes dsk-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes dsk-shine {
+  0%, 60% { transform: translateX(-120%) skewX(-20deg); }
+  100% { transform: translateX(220%) skewX(-20deg); }
+}
+
+@keyframes dsk-reveal {
+  from { opacity: 0; transform: translateY(48px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .reveal,
+  .shine::after,
+  .animate-marquee,
+  .animate-kenburns {
+    animation: none !important;
   }
   *,
   *::before,

@@ -50,9 +50,25 @@ export const site = {
     "Écouen",
   ],
   areaNote: "et communes alentours du Val-d'Oise (95).",
+  /**
+   * Fiche Google Business du garage (lien "Voir tous les avis").
+   * Laisser vide tant que la fiche n'existe pas.
+   */
+  googleBusinessUrl: "",
 } as const;
 
 export const primaryContact = site.contacts[0];
+
+/**
+ * Avis clients repris À L'IDENTIQUE depuis la fiche Google du garage.
+ * Ne jamais inventer d'avis : la section "Avis clients" de l'accueil
+ * reste masquée tant que cette liste est vide.
+ */
+export const googleReviews: Array<{ author: string; text: string; rating: number }> = [];
+
+/** Note moyenne Google (ex. { value: 4.9, count: 37 }) ; null = non affichée. */
+export const googleRating: { value: number; count: number } | null = null;
+
 
 export type ServiceIconName =
   | "wrench"

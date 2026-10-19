@@ -16,6 +16,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { MobileActionBar } from "@/components/site/MobileActionBar";
 import { CookieBanner } from "@/components/site/CookieBanner";
+import { BackToTop } from "@/components/site/BackToTop";
 import { Analytics } from "@/components/site/Analytics";
 import { site } from "@/config/site";
 import { Toaster } from "@/components/ui/sonner";
@@ -49,7 +50,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: { error: unknown; reset: () => void }) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
@@ -154,11 +155,12 @@ function RootComponent() {
       ) : (
         <>
           <Header />
-          <main id="contenu" className="pt-20 pb-20 lg:pb-0">
+          <main id="contenu" className="pt-20 pb-20 lg:pt-29 lg:pb-0">
             <Outlet />
           </main>
           <Footer />
           <MobileActionBar />
+          <BackToTop />
           <CookieBanner />
         </>
       )}
