@@ -3,6 +3,7 @@ import { Mail, MapPin, Phone, Clock } from "lucide-react";
 
 import logo from "@/assets/dsk-logo.png.asset.json";
 import { seoServices, site } from "@/config/site";
+import { openConsentPreferences } from "@/lib/consent";
 
 export function Footer() {
   return (
@@ -94,6 +95,15 @@ export function Footer() {
               >
                 Politique de confidentialité
               </Link>
+            </li>
+            <li>
+              <button
+                type="button"
+                onClick={openConsentPreferences}
+                className="cursor-pointer hover:text-foreground"
+              >
+                Gestion des cookies
+              </button>
             </li>
           </ul>
         </div>

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Section, SectionHeading } from "@/components/site/Section";
 import { AutoRepairJsonLd } from "@/components/site/JsonLd";
 import { QuoteForm } from "@/components/site/QuoteForm";
+import { MapEmbed } from "@/components/site/MapEmbed";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/contact")({
@@ -23,7 +24,7 @@ export const Route = createFileRoute("/contact")({
           "Adresse, téléphones et formulaire de devis du garage DSK AUTO 95 à Sarcelles (95).",
       },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: `${site.url}/contact` }],
   }),
   component: ContactPage,
 });
@@ -76,14 +77,8 @@ function ContactPage() {
               </Button>
             </div>
 
-            <div className="mt-8 overflow-hidden rounded-xl border border-border">
-              <iframe
-                src={site.mapsEmbedUrl}
-                title={`Localisation de ${site.name} à Sarcelles`}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="h-72 w-full"
-              />
+            <div className="mt-8">
+              <MapEmbed className="h-72" />
             </div>
           </div>
 

@@ -15,6 +15,9 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { MobileActionBar } from "@/components/site/MobileActionBar";
+import { CookieBanner } from "@/components/site/CookieBanner";
+import { Analytics } from "@/components/site/Analytics";
+import { site } from "@/config/site";
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -100,6 +103,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:locale", content: "fr_FR" },
       { property: "og:site_name", content: "DSK AUTO 95 GARAGE" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: `${site.url}/og-image.jpg` },
       { name: "theme-color", content: "#080808" },
     ],
     links: [
@@ -154,8 +158,10 @@ function RootComponent() {
           </main>
           <Footer />
           <MobileActionBar />
+          <CookieBanner />
         </>
       )}
+      <Analytics />
       <Toaster position="top-center" richColors />
     </QueryClientProvider>
   );

@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { Section, SectionHeading } from "@/components/site/Section";
 import { site } from "@/config/site";
+import { openConsentPreferences } from "@/lib/consent";
 
 export const Route = createFileRoute("/politique-confidentialite")({
   head: () => ({
@@ -23,7 +24,7 @@ export const Route = createFileRoute("/politique-confidentialite")({
       },
       { name: "robots", content: "noindex, follow" },
     ],
-    links: [{ rel: "canonical", href: "/politique-confidentialite" }],
+    links: [{ rel: "canonical", href: `${site.url}/politique-confidentialite` }],
   }),
   component: PrivacyPage,
 });
@@ -82,9 +83,9 @@ function PrivacyPage() {
             Durée de conservation
           </h2>
           <p className="mt-3">
-            Les demandes sont conservées le temps nécessaire au traitement de la
-            demande commerciale, puis archivées ou supprimées.{" "}
-            <em>Durée précise à compléter par le garage.</em>
+            Les demandes de devis sont conservées au maximum 3 ans après le
+            dernier contact, puis supprimées. Les données de mesure d'audience
+            sont conservées 14 mois au maximum par Google Analytics.
           </p>
         </section>
 
@@ -95,7 +96,12 @@ function PrivacyPage() {
           <p className="mt-3">
             Les données sont accessibles uniquement à l'équipe du garage via un
             espace d'administration protégé par authentification. Elles ne sont
-            ni vendues, ni cédées à des tiers à des fins commerciales.
+            ni vendues, ni cédées à des tiers à des fins commerciales. Elles
+            sont hébergées par nos prestataires techniques (hébergement du site
+            et de la base de données), qui agissent uniquement sur nos
+            instructions. Les données de mesure d'audience peuvent être
+            transférées aux États-Unis par Google, dans le cadre du Data Privacy
+            Framework UE–États-Unis.
           </p>
         </section>
 
@@ -116,9 +122,33 @@ function PrivacyPage() {
             Cookies
           </h2>
           <p className="mt-3">
-            Ce site n'utilise pas de cookies publicitaires ni de mesure
-            d'audience. La carte Google Maps intégrée peut déposer des cookies
-            propres à Google lorsqu'elle est affichée.
+            Ce site n'utilise aucun cookie publicitaire. Lors de votre première
+            visite, une bannière vous permet d'accepter ou de refuser, aussi
+            simplement l'un que l'autre :
+          </p>
+          <ul className="mt-3 list-disc space-y-2 pl-5">
+            <li>
+              <strong className="text-foreground">Mesure d'audience</strong> —
+              Google Analytics (Google Ireland Ltd) : statistiques de visite
+              avec adresse IP anonymisée. Chargé uniquement après votre accord.
+            </li>
+            <li>
+              <strong className="text-foreground">Carte Google Maps</strong> —
+              affichée uniquement après votre accord ; Google peut alors déposer
+              ses propres cookies.
+            </li>
+          </ul>
+          <p className="mt-3">
+            Votre choix est mémorisé sur votre appareil pendant 6 mois, puis
+            vous est redemandé. Vous pouvez le modifier à tout moment :{" "}
+            <button
+              type="button"
+              onClick={openConsentPreferences}
+              className="cursor-pointer text-foreground underline underline-offset-2"
+            >
+              gérer mes cookies
+            </button>
+            .
           </p>
         </section>
       </div>

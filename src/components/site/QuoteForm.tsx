@@ -282,7 +282,8 @@ export function QuoteForm() {
         <p className="mt-1 text-sm text-destructive">{errors["consent"]}</p>
       ) : null}
 
-      {!turnstileConfigured ? (
+      {/* Note interne : visible en développement uniquement, jamais aux visiteurs */}
+      {!turnstileConfigured && import.meta.env.DEV ? (
         <p className="mt-5 rounded-md border border-border bg-muted/40 p-3 text-xs text-muted-foreground">
           Protection anti-robot Cloudflare Turnstile : non configurée. Le
           formulaire fonctionne avec les contrôles internes (champ piège, délai

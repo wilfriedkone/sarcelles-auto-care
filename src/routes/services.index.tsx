@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Section, SectionHeading } from "@/components/site/Section";
 import { ServiceIcon } from "@/components/site/icons";
 import { AutoRepairJsonLd } from "@/components/site/JsonLd";
-import { primaryContact, seoServices } from "@/config/site";
+import { primaryContact, seoServices, site } from "@/config/site";
 
 export const Route = createFileRoute("/services/")({
   head: () => ({
@@ -26,7 +26,7 @@ export const Route = createFileRoute("/services/")({
           "Toutes les prestations du garage DSK AUTO 95 à Sarcelles : entretien, diagnostic, électronique, clés, achat et vente.",
       },
     ],
-    links: [{ rel: "canonical", href: "/services" }],
+    links: [{ rel: "canonical", href: `${site.url}/services` }],
   }),
   component: ServicesPage,
 });

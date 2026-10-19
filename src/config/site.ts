@@ -8,6 +8,17 @@
  */
 
 export const site = {
+  /**
+   * Adresse publique du site, sans "/" final (ex. "https://dskauto95.fr").
+   * Sert aux liens canoniques, au sitemap, au robots.txt et aux partages.
+   */
+  url: "https://id-preview--257ec0ea-6537-4e32-83a7-b2a2c4bf71ec.lovable.app",
+  /**
+   * Identifiant de mesure Google Analytics 4 (ex. "G-ABC123XYZ").
+   * Laisser vide tant que le compte n'est pas créé : rien n'est chargé.
+   * GA ne se charge qu'après acceptation dans la bannière cookies.
+   */
+  gaMeasurementId: "",
   name: "DSK AUTO 95 GARAGE",
   shortName: "DSK AUTO 95",
   activity: "Garage automobile — achat, vente, réparation, diagnostic",

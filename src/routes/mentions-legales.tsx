@@ -19,7 +19,7 @@ export const Route = createFileRoute("/mentions-legales")({
       },
       { name: "robots", content: "noindex, follow" },
     ],
-    links: [{ rel: "canonical", href: "/mentions-legales" }],
+    links: [{ rel: "canonical", href: `${site.url}/mentions-legales` }],
   }),
   component: LegalPage,
 });

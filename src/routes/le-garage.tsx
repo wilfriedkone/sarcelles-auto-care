@@ -26,7 +26,7 @@ export const Route = createFileRoute("/le-garage")({
           "Atelier automobile de proximité à Sarcelles : diagnostic, réparation, entretien et vente de véhicules.",
       },
     ],
-    links: [{ rel: "canonical", href: "/le-garage" }],
+    links: [{ rel: "canonical", href: `${site.url}/le-garage` }],
   }),
   component: GaragePage,
 });
