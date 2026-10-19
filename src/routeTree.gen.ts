@@ -15,6 +15,8 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as LeGarageRouteImport } from './routes/le-garage'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
 import { Route as PolitiqueConfidentialiteRouteImport } from './routes/politique-confidentialite'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ZoneInterventionRouteImport } from './routes/zone-intervention'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
@@ -51,6 +53,16 @@ const PolitiqueConfidentialiteRoute =
     path: '/politique-confidentialite',
     getParentRoute: () => rootRouteImport,
   } as any)
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ZoneInterventionRoute = ZoneInterventionRouteImport.update({
   id: '/zone-intervention',
   path: '/zone-intervention',
@@ -84,6 +96,8 @@ export interface FileRoutesByFullPath {
   '/le-garage': typeof LeGarageRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/zone-intervention': typeof ZoneInterventionRoute
   '/admin/login': typeof AdminLoginRoute
   '/services/$slug': typeof ServicesSlugRoute
@@ -96,6 +110,8 @@ export interface FileRoutesByTo {
   '/le-garage': typeof LeGarageRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/zone-intervention': typeof ZoneInterventionRoute
   '/admin/login': typeof AdminLoginRoute
   '/services/$slug': typeof ServicesSlugRoute
@@ -110,6 +126,8 @@ export interface FileRoutesById {
   '/le-garage': typeof LeGarageRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/zone-intervention': typeof ZoneInterventionRoute
   '/admin/login': typeof AdminLoginRoute
   '/services/$slug': typeof ServicesSlugRoute
@@ -124,6 +142,8 @@ export interface FileRouteTypes {
     | '/le-garage'
     | '/mentions-legales'
     | '/politique-confidentialite'
+    | '/robots.txt'
+    | '/sitemap.xml'
     | '/zone-intervention'
     | '/admin/login'
     | '/services/$slug'
@@ -136,6 +156,8 @@ export interface FileRouteTypes {
     | '/le-garage'
     | '/mentions-legales'
     | '/politique-confidentialite'
+    | '/robots.txt'
+    | '/sitemap.xml'
     | '/zone-intervention'
     | '/admin/login'
     | '/services/$slug'
@@ -149,6 +171,8 @@ export interface FileRouteTypes {
     | '/le-garage'
     | '/mentions-legales'
     | '/politique-confidentialite'
+    | '/robots.txt'
+    | '/sitemap.xml'
     | '/zone-intervention'
     | '/admin/login'
     | '/services/$slug'
@@ -163,6 +187,8 @@ export interface RootRouteChildren {
   LeGarageRoute: typeof LeGarageRoute
   MentionsLegalesRoute: typeof MentionsLegalesRoute
   PolitiqueConfidentialiteRoute: typeof PolitiqueConfidentialiteRoute
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ZoneInterventionRoute: typeof ZoneInterventionRoute
   AdminLoginRoute: typeof AdminLoginRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
@@ -211,6 +237,20 @@ declare module '@tanstack/react-router' {
       path: '/politique-confidentialite'
       fullPath: '/politique-confidentialite'
       preLoaderRoute: typeof PolitiqueConfidentialiteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/zone-intervention': {
@@ -269,6 +309,8 @@ const rootRouteChildren: RootRouteChildren = {
   LeGarageRoute: LeGarageRoute,
   MentionsLegalesRoute: MentionsLegalesRoute,
   PolitiqueConfidentialiteRoute: PolitiqueConfidentialiteRoute,
+  RobotsDottxtRoute: RobotsDottxtRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   ZoneInterventionRoute: ZoneInterventionRoute,
   AdminLoginRoute: AdminLoginRoute,
   ServicesSlugRoute: ServicesSlugRoute,

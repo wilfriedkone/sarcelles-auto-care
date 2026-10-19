@@ -31,7 +31,7 @@ export const Route = createFileRoute("/services/$slug")({
         { property: "og:title", content: service.metaTitle },
         { property: "og:description", content: service.metaDescription },
       ],
-      links: [{ rel: "canonical", href: `/services/${service.slug}` }],
+      links: [{ rel: "canonical", href: `${site.url}/services/${service.slug}` }],
     };
   },
   component: ServiceDetail,

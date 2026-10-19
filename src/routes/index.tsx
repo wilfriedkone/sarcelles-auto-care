@@ -27,6 +27,7 @@ import { Section, SectionHeading } from "@/components/site/Section";
 import { ServiceIcon } from "@/components/site/icons";
 import { AutoRepairJsonLd } from "@/components/site/JsonLd";
 import { QuoteForm } from "@/components/site/QuoteForm";
+import { MapEmbed } from "@/components/site/MapEmbed";
 import { faq, primaryContact, seoServices, site, steps } from "@/config/site";
 
 export const Route = createFileRoute("/")({
@@ -49,7 +50,7 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:url", content: "/" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: `${site.url}/` }],
   }),
   component: Home,
 });
@@ -345,14 +346,8 @@ function Home() {
                 </li>
               ))}
             </ul>
-            <div className="mt-8 overflow-hidden rounded-xl border border-border">
-              <iframe
-                src={site.mapsEmbedUrl}
-                title={`Localisation de ${site.name} à Sarcelles`}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="h-64 w-full"
-              />
+            <div className="mt-8">
+              <MapEmbed className="h-64" />
             </div>
           </div>
           <QuoteForm />

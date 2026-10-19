@@ -4,6 +4,7 @@ import { MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section, SectionHeading } from "@/components/site/Section";
 import { AutoRepairJsonLd } from "@/components/site/JsonLd";
+import { MapEmbed } from "@/components/site/MapEmbed";
 import { primaryContact, site } from "@/config/site";
 
 export const Route = createFileRoute("/zone-intervention")({
@@ -25,7 +26,7 @@ export const Route = createFileRoute("/zone-intervention")({
           "DSK AUTO 95 GARAGE accueille les véhicules de Sarcelles et des communes voisines du 95.",
       },
     ],
-    links: [{ rel: "canonical", href: "/zone-intervention" }],
+    links: [{ rel: "canonical", href: `${site.url}/zone-intervention` }],
   }),
   component: ZonePage,
 });
@@ -55,15 +56,7 @@ function ZonePage() {
             ))}
           </ul>
 
-          <div className="overflow-hidden rounded-xl border border-border">
-            <iframe
-              src={site.mapsEmbedUrl}
-              title={`Localisation de ${site.name} à Sarcelles`}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="h-80 w-full"
-            />
-          </div>
+          <MapEmbed className="h-80" />
         </div>
 
         <div className="mt-12 flex flex-wrap gap-3">
