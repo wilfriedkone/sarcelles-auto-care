@@ -15,7 +15,7 @@ import atelier from "@/assets/photo-atelier.jpg";
 import mecanique from "@/assets/photo-mecanique.jpg";
 import vente from "@/assets/photo-vente.jpg";
 import diagnostic from "@/assets/photo-diagnostic.jpg";
-import logo from "@/assets/dsk-logo.png.asset.json";
+import logo from "@/assets/dsk-logo.webp";
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -99,10 +99,10 @@ function Home() {
         <div className="relative mx-auto max-w-7xl px-4 py-20 md:py-28">
           <div className="max-w-3xl animate-rise">
             <img
-              src={logo.url}
+              src={logo}
               alt={`Logo ${site.name}`}
               width={200}
-              height={163}
+              height={168}
               className="h-24 w-auto md:h-32"
             />
             <p className="mt-8 font-display text-sm font-bold uppercase tracking-[0.3em] text-primary">

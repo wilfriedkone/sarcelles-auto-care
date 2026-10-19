@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, Phone, X } from "lucide-react";
 import { useState } from "react";
 
-import logo from "@/assets/dsk-logo.png.asset.json";
+import logo from "@/assets/dsk-logo.webp";
 import { primaryContact, site } from "@/config/site";
 import { Button } from "@/components/ui/button";
 
@@ -27,9 +27,9 @@ export function Header() {
           onClick={() => setOpen(false)}
         >
           <img
-            src={logo.url}
+            src={logo}
             alt={`Logo ${site.name}`}
-            width={64}
+            width={62}
             height={52}
             className="h-12 w-auto"
           />

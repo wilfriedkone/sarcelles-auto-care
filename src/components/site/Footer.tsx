@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, Phone, Clock } from "lucide-react";
 
-import logo from "@/assets/dsk-logo.png.asset.json";
+import logo from "@/assets/dsk-logo.webp";
 import { seoServices, site } from "@/config/site";
 import { openConsentPreferences } from "@/lib/consent";
 
@@ -11,10 +11,10 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-4">
         <div className="md:col-span-1">
           <img
-            src={logo.url}
+            src={logo}
             alt={`Logo ${site.name}`}
             width={140}
-            height={114}
+            height={118}
             loading="lazy"
             className="h-20 w-auto"
           />
