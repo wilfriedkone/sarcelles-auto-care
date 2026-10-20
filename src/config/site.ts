@@ -33,7 +33,6 @@ export const site = {
   email: "dskauto95@gmail.com",
   contacts: [
     { name: "Diaby", phone: "07 59 04 48 39", tel: "+33759044839" },
-    { name: "Sacko", phone: "07 53 66 15 99", tel: "+33753661599" },
   ],
   /** Horaires : jours d'ouverture non communiqués — ne rien inventer. */
   hoursLabel: "Horaires : 9h–19h — appelez-nous avant votre passage",
