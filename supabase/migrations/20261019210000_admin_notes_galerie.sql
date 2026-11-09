@@ -26,10 +26,14 @@ GRANT SELECT ON public.gallery_photos TO anon, authenticated;
 GRANT INSERT, UPDATE, DELETE ON public.gallery_photos TO authenticated;
 GRANT ALL ON public.gallery_photos TO service_role;
 
+-- Visiteurs : photos publiées seulement (has_role n'est pas exécutable par anon).
 DROP POLICY IF EXISTS "Public can read published photos" ON public.gallery_photos;
-CREATE POLICY "Public can read published photos" ON public.gallery_photos
-  FOR SELECT TO anon, authenticated
-  USING (published OR public.has_role(auth.uid(), 'admin'));
+DROP POLICY IF EXISTS "Visitors read published photos" ON public.gallery_photos;
+CREATE POLICY "Visitors read published photos" ON public.gallery_photos
+  FOR SELECT TO anon USING (published);
+DROP POLICY IF EXISTS "Signed-in read published photos" ON public.gallery_photos;
+CREATE POLICY "Signed-in read published photos" ON public.gallery_photos
+  FOR SELECT TO authenticated USING (published OR public.has_role(auth.uid(), 'admin'));
 DROP POLICY IF EXISTS "Admins manage photos" ON public.gallery_photos;
 CREATE POLICY "Admins manage photos" ON public.gallery_photos
   FOR ALL TO authenticated

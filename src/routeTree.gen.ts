@@ -19,9 +19,13 @@ import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ZoneInterventionRouteImport } from './routes/zone-intervention'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as AdminMotDePasseOublieRouteImport } from './routes/admin.mot-de-passe-oublie'
+import { Route as AdminNouveauMotDePasseRouteImport } from './routes/admin.nouveau-mot-de-passe'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
 import { Route as AuthenticatedAdminDemandesRouteImport } from './routes/_authenticated/admin.demandes'
+import { Route as AuthenticatedAdminPhotosRouteImport } from './routes/_authenticated/admin.photos'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -73,6 +77,16 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
   path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminMotDePasseOublieRoute = AdminMotDePasseOublieRouteImport.update({
+  id: '/admin/mot-de-passe-oublie',
+  path: '/admin/mot-de-passe-oublie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminNouveauMotDePasseRoute = AdminNouveauMotDePasseRouteImport.update({
+  id: '/admin/nouveau-mot-de-passe',
+  path: '/admin/nouveau-mot-de-passe',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesIndexRoute = ServicesIndexRouteImport.update({
   id: '/services/',
   path: '/services/',
@@ -83,10 +97,21 @@ const ServicesSlugRoute = ServicesSlugRouteImport.update({
   path: '/services/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedAdminDemandesRoute =
   AuthenticatedAdminDemandesRouteImport.update({
     id: '/admin/demandes',
     path: '/admin/demandes',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminPhotosRoute =
+  AuthenticatedAdminPhotosRouteImport.update({
+    id: '/admin/photos',
+    path: '/admin/photos',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 
@@ -100,9 +125,13 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/zone-intervention': typeof ZoneInterventionRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/mot-de-passe-oublie': typeof AdminMotDePasseOublieRoute
+  '/admin/nouveau-mot-de-passe': typeof AdminNouveauMotDePasseRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/': typeof ServicesIndexRoute
   '/admin/demandes': typeof AuthenticatedAdminDemandesRoute
+  '/admin/photos': typeof AuthenticatedAdminPhotosRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -114,9 +143,13 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/zone-intervention': typeof ZoneInterventionRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/mot-de-passe-oublie': typeof AdminMotDePasseOublieRoute
+  '/admin/nouveau-mot-de-passe': typeof AdminNouveauMotDePasseRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services': typeof ServicesIndexRoute
   '/admin/demandes': typeof AuthenticatedAdminDemandesRoute
+  '/admin/photos': typeof AuthenticatedAdminPhotosRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -130,9 +163,13 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/zone-intervention': typeof ZoneInterventionRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/mot-de-passe-oublie': typeof AdminMotDePasseOublieRoute
+  '/admin/nouveau-mot-de-passe': typeof AdminNouveauMotDePasseRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/': typeof ServicesIndexRoute
   '/_authenticated/admin/demandes': typeof AuthenticatedAdminDemandesRoute
+  '/_authenticated/admin/photos': typeof AuthenticatedAdminPhotosRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -146,9 +183,13 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/zone-intervention'
     | '/admin/login'
+    | '/admin/mot-de-passe-oublie'
+    | '/admin/nouveau-mot-de-passe'
     | '/services/$slug'
     | '/services/'
     | '/admin/demandes'
+    | '/admin/photos'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -160,9 +201,13 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/zone-intervention'
     | '/admin/login'
+    | '/admin/mot-de-passe-oublie'
+    | '/admin/nouveau-mot-de-passe'
     | '/services/$slug'
     | '/services'
     | '/admin/demandes'
+    | '/admin/photos'
+    | '/admin'
   id:
     | '__root__'
     | '/'
@@ -175,9 +220,13 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/zone-intervention'
     | '/admin/login'
+    | '/admin/mot-de-passe-oublie'
+    | '/admin/nouveau-mot-de-passe'
     | '/services/$slug'
     | '/services/'
     | '/_authenticated/admin/demandes'
+    | '/_authenticated/admin/photos'
+    | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -191,6 +240,8 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ZoneInterventionRoute: typeof ZoneInterventionRoute
   AdminLoginRoute: typeof AdminLoginRoute
+  AdminMotDePasseOublieRoute: typeof AdminMotDePasseOublieRoute
+  AdminNouveauMotDePasseRoute: typeof AdminNouveauMotDePasseRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
 }
@@ -267,6 +318,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/mot-de-passe-oublie': {
+      id: '/admin/mot-de-passe-oublie'
+      path: '/admin/mot-de-passe-oublie'
+      fullPath: '/admin/mot-de-passe-oublie'
+      preLoaderRoute: typeof AdminMotDePasseOublieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/nouveau-mot-de-passe': {
+      id: '/admin/nouveau-mot-de-passe'
+      path: '/admin/nouveau-mot-de-passe'
+      fullPath: '/admin/nouveau-mot-de-passe'
+      preLoaderRoute: typeof AdminNouveauMotDePasseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/': {
       id: '/services/'
       path: '/services'
@@ -281,6 +346,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admin/demandes': {
       id: '/_authenticated/admin/demandes'
       path: '/admin/demandes'
@@ -288,15 +360,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminDemandesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin/photos': {
+      id: '/_authenticated/admin/photos'
+      path: '/admin/photos'
+      fullPath: '/admin/photos'
+      preLoaderRoute: typeof AuthenticatedAdminPhotosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminDemandesRoute: typeof AuthenticatedAdminDemandesRoute
+  AuthenticatedAdminPhotosRoute: typeof AuthenticatedAdminPhotosRoute
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminDemandesRoute: AuthenticatedAdminDemandesRoute,
+  AuthenticatedAdminPhotosRoute: AuthenticatedAdminPhotosRoute,
+  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -313,6 +396,8 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ZoneInterventionRoute: ZoneInterventionRoute,
   AdminLoginRoute: AdminLoginRoute,
+  AdminMotDePasseOublieRoute: AdminMotDePasseOublieRoute,
+  AdminNouveauMotDePasseRoute: AdminNouveauMotDePasseRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   ServicesIndexRoute: ServicesIndexRoute,
 }

@@ -1,7 +1,8 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { Loader2 } from "lucide-react";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { useState, type FormEvent } from "react";
 
+import { AuthCard } from "@/components/admin/AuthCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,13 +10,12 @@ import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/admin/login")({
   ssr: false,
+  validateSearch: (search: Record<string, unknown>): { refus?: number } =>
+    search["refus"] ? { refus: 1 } : {},
   head: () => ({
     meta: [
-      { title: "Connexion administration | DSK AUTO 95 GARAGE" },
+      { title: "Connexion | Espace garage DSK AUTO 95" },
       { name: "robots", content: "noindex, nofollow" },
-      { name: "description", content: "Accès réservé à l'équipe du garage." },
-      { property: "og:title", content: "Connexion administration" },
-      { property: "og:description", content: "Accès réservé." },
     ],
   }),
   component: AdminLogin,
@@ -23,9 +23,13 @@ export const Route = createFileRoute("/admin/login")({
 
 function AdminLogin() {
   const navigate = useNavigate();
+  const { refus } = Route.useSearch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState<string | null>(
+    refus ? "Ce compte n'a pas accès à l'espace garage." : null,
+  );
   const [loading, setLoading] = useState(false);
 
   async function onSubmit(event: FormEvent) {
@@ -38,71 +42,69 @@ function AdminLogin() {
       email: email.trim(),
       password,
     });
-
     if (signInError) {
       setLoading(false);
-      setError("Identifiants invalides.");
+      setError("E-mail ou mot de passe incorrect.");
       return;
     }
     await navigate({ to: "/admin/demandes", replace: true });
   }
 
   return (
-    <main className="bg-honeycomb flex min-h-screen items-center justify-center px-4 py-16">
-      <div className="w-full max-w-sm rounded-xl border border-border bg-card p-8 shadow-card">
-        <h1 className="font-display text-2xl font-bold uppercase">
-          Administration
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Accès réservé à l'équipe DSK AUTO 95. Aucune inscription publique.
-        </p>
-
-        <form onSubmit={onSubmit} className="mt-8 space-y-4" noValidate>
-          <div>
-            <Label htmlFor="email" className="mb-2 block">
-              E-mail
-            </Label>
-            <Input
-              id="email"
-              type="email"
-              autoComplete="username"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+    <AuthCard title="Espace garage" intro="Accès réservé à l'équipe DSK AUTO 95.">
+      <form onSubmit={onSubmit} className="space-y-4" noValidate>
+        <div className="space-y-1.5">
+          <Label htmlFor="email">E-mail</Label>
+          <Input
+            id="email"
+            type="email"
+            inputMode="email"
+            autoComplete="username"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="h-12 text-base"
+            required
+          />
+        </div>
+        <div className="space-y-1.5">
+          <div className="flex items-baseline justify-between">
+            <Label htmlFor="password">Mot de passe</Label>
+            <Link to="/admin/mot-de-passe-oublie" className="text-xs text-muted-foreground underline-offset-2 hover:text-foreground hover:underline">
+              Mot de passe oublié ?
+            </Link>
           </div>
-          <div>
-            <Label htmlFor="password" className="mb-2 block">
-              Mot de passe
-            </Label>
+          <div className="relative">
             <Input
               id="password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className="h-12 pr-12 text-base"
               required
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword((v) => !v)}
+              className="absolute top-1/2 right-1 flex size-10 -translate-y-1/2 cursor-pointer items-center justify-center text-muted-foreground hover:text-foreground"
+              aria-label={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
+            >
+              {showPassword ? <EyeOff className="size-5" aria-hidden="true" /> : <Eye className="size-5" aria-hidden="true" />}
+            </button>
           </div>
+        </div>
 
-          {error ? (
-            <p role="alert" className="text-sm text-destructive">
-              {error}
-            </p>
-          ) : null}
+        {error ? (
+          <p role="alert" className="text-sm text-destructive">
+            {error}
+          </p>
+        ) : null}
 
-          <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? (
-              <>
-                <Loader2 className="size-4 animate-spin" aria-hidden="true" />
-                Connexion…
-              </>
-            ) : (
-              "Se connecter"
-            )}
-          </Button>
-        </form>
-      </div>
-    </main>
+        <Button type="submit" size="lg" className="h-12 w-full text-base" disabled={loading}>
+          {loading ? <Loader2 className="size-4 animate-spin" aria-hidden="true" /> : null}
+          {loading ? "Connexion…" : "Se connecter"}
+        </Button>
+      </form>
+    </AuthCard>
   );
 }

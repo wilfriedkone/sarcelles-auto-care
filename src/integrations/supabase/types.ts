@@ -14,8 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      gallery_photos: {
+        Row: {
+          alt: string
+          created_at: string
+          height: number | null
+          id: string
+          position: number
+          published: boolean
+          storage_path: string
+          width: number | null
+        }
+        Insert: {
+          alt?: string
+          created_at?: string
+          height?: number | null
+          id?: string
+          position?: number
+          published?: boolean
+          storage_path: string
+          width?: number | null
+        }
+        Update: {
+          alt?: string
+          created_at?: string
+          height?: number | null
+          id?: string
+          position?: number
+          published?: boolean
+          storage_path?: string
+          width?: number | null
+        }
+        Relationships: []
+      }
       quote_requests: {
         Row: {
+          admin_note: string | null
           consent: boolean
           created_at: string
           email: string | null
@@ -32,6 +66,7 @@ export type Database = {
           vehicle: string | null
         }
         Insert: {
+          admin_note?: string | null
           consent?: boolean
           created_at?: string
           email?: string | null
@@ -48,6 +83,7 @@ export type Database = {
           vehicle?: string | null
         }
         Update: {
+          admin_note?: string | null
           consent?: boolean
           created_at?: string
           email?: string | null

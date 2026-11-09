@@ -29,6 +29,9 @@ import { QuoteForm } from "@/components/site/QuoteForm";
 import { MapEmbed } from "@/components/site/MapEmbed";
 import { CallbackForm } from "@/components/site/CallbackForm";
 import { Marquee } from "@/components/site/Marquee";
+import { galleryPhotoUrl } from "@/lib/gallery";
+import { cn } from "@/lib/utils";
+import { listPublishedPhotos } from "@/lib/gallery.functions";
 import {
   faq,
   googleRating,
@@ -62,6 +65,13 @@ export const Route = createFileRoute("/")({
     ],
     links: [{ rel: "canonical", href: `${site.url}/` }],
   }),
+  loader: async () => {
+    try {
+      return { photos: await listPublishedPhotos() };
+    } catch {
+      return { photos: [] };
+    }
+  },
   component: Home,
 });
 
@@ -97,10 +107,24 @@ const trust = [
   { icon: MapPin, title: "Sarcelles (95)", text: "Garges, Villiers-le-Bel, Écouen…" },
 ];
 
+/** Photos d'illustration, affichées tant que le garage n'a pas ajouté les siennes. */
+const defaultGallery = [
+  { src: atelier, alt: "L'atelier du garage" },
+  { src: mecanique, alt: "Intervention mécanique" },
+  { src: vente, alt: "Véhicule devant le garage" },
+  { src: diagnostic, alt: "Diagnostic électronique" },
+];
+
 const eyebrow = "font-display text-sm font-bold uppercase tracking-[0.25em] text-[oklch(0.72_0.17_29)]";
 const bigTitle = "mt-3 text-4xl font-extrabold uppercase leading-[1.02] md:text-6xl";
 
 function Home() {
+  const { photos } = Route.useLoaderData();
+  const gallery =
+    photos.length > 0
+      ? photos.slice(0, 8).map((p) => ({ src: galleryPhotoUrl(p.storage_path), alt: p.alt || "Photo du garage" }))
+      : defaultGallery;
+
   return (
     <>
       <AutoRepairJsonLd />
@@ -384,30 +408,19 @@ function Home() {
         <p className={eyebrow}>L'atelier en images</p>
         <h2 className={`reveal ${bigTitle}`}>Notre garage</h2>
         <div className="mt-10 grid auto-rows-[200px] grid-cols-2 gap-4 md:auto-rows-[240px] md:grid-cols-4">
-          <img
-            src={atelier}
-            alt="L'atelier du garage"
-            loading="lazy"
-            className="reveal col-span-2 row-span-2 size-full rounded-2xl object-cover"
-          />
-          <img
-            src={mecanique}
-            alt="Intervention mécanique"
-            loading="lazy"
-            className="reveal size-full rounded-2xl object-cover"
-          />
-          <img
-            src={vente}
-            alt="Véhicule devant le garage"
-            loading="lazy"
-            className="reveal size-full rounded-2xl object-cover"
-          />
-          <img
-            src={diagnostic}
-            alt="Diagnostic électronique"
-            loading="lazy"
-            className="reveal col-span-2 size-full rounded-2xl object-cover"
-          />
+          {gallery.map((photo, index) => (
+            <img
+              key={photo.src}
+              src={photo.src}
+              alt={photo.alt}
+              loading="lazy"
+              className={cn(
+                "reveal size-full rounded-2xl object-cover",
+                index === 0 && "col-span-2 row-span-2",
+                gallery.length === 4 && index === 3 && "col-span-2",
+              )}
+            />
+          ))}
         </div>
       </section>
 
