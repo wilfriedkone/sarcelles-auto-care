@@ -208,7 +208,7 @@ export function QuoteForm() {
 
         <Field
           id="vehicle"
-          label="Véhicule (marque, modèle, année) — facultatif"
+          label="Véhicule (marque, modèle, année), facultatif"
           error={errors["vehicle"]}
         >
           <Input

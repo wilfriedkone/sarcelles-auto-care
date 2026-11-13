@@ -1,23 +1,23 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Clock, Mail, MapPin, Navigation, Phone } from "lucide-react";
+import { Clock, Mail, MapPin, MessageCircle, Navigation, Phone } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Section, SectionHeading } from "@/components/site/Section";
 import { AutoRepairJsonLd } from "@/components/site/JsonLd";
 import { QuoteForm } from "@/components/site/QuoteForm";
 import { MapEmbed } from "@/components/site/MapEmbed";
-import { site } from "@/config/site";
+import { primaryContact, site } from "@/config/site";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact & devis — Garage à Sarcelles | DSK AUTO 95 GARAGE" },
+      { title: "Contact et devis, garage à Sarcelles | DSK AUTO 95 GARAGE" },
       {
         name: "description",
         content:
           "Contactez DSK AUTO 95 GARAGE à Sarcelles : adresse, téléphones, e-mail et formulaire de demande de devis pour votre véhicule.",
       },
-      { property: "og:title", content: "Contact & devis — DSK AUTO 95 GARAGE" },
+      { property: "og:title", content: "Contact et devis | DSK AUTO 95 GARAGE" },
       {
         property: "og:description",
         content:
@@ -56,10 +56,16 @@ function ContactPage() {
                 <li key={c.tel} className="flex gap-3">
                   <Phone className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden="true" />
                   <a href={`tel:${c.tel}`} className="hover:text-primary">
-                    {c.name} — {c.phone}
+                    {c.name} : {c.phone}
                   </a>
                 </li>
               ))}
+              <li className="flex gap-3">
+                <MessageCircle className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden="true" />
+                <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noreferrer noopener" className="hover:text-primary">
+                  WhatsApp : {primaryContact.phone}
+                </a>
+              </li>
               <li className="flex gap-3">
                 <Mail className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden="true" />
                 <a href={`mailto:${site.email}`} className="hover:text-primary">

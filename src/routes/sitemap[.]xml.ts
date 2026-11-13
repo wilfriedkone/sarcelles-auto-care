@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { seoServices, site } from "@/config/site";
+import { cityPages } from "@/config/services-content";
 
 /** Sitemap généré depuis la configuration : toujours à jour avec site.url et les services. */
 const pages: Array<[path: string, priority: string]> = [
@@ -9,6 +10,7 @@ const pages: Array<[path: string, priority: string]> = [
   ...seoServices.map((s): [string, string] => [`/services/${s.slug}`, "0.8"]),
   ["/le-garage", "0.7"],
   ["/zone-intervention", "0.7"],
+  ...cityPages.map((c): [string, string] => [`/garage-auto/${c.slug}`, "0.8"]),
   ["/contact", "0.9"],
 ];
 

@@ -6,6 +6,7 @@ import { Section, SectionHeading } from "@/components/site/Section";
 import { AutoRepairJsonLd } from "@/components/site/JsonLd";
 import { MapEmbed } from "@/components/site/MapEmbed";
 import { primaryContact, site } from "@/config/site";
+import { cityPages } from "@/config/services-content";
 
 export const Route = createFileRoute("/zone-intervention")({
   head: () => ({
@@ -45,15 +46,27 @@ function ZonePage() {
 
         <div className="mt-12 grid gap-10 lg:grid-cols-2">
           <ul className="grid gap-3 sm:grid-cols-2">
-            {site.areas.map((area) => (
-              <li
-                key={area}
-                className="flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm"
-              >
-                <MapPin className="size-4 text-primary" aria-hidden="true" />
-                {area}
-              </li>
-            ))}
+            {site.areas.map((area) => {
+              const city = cityPages.find((c) => c.name === area);
+              const inner = (
+                <>
+                  <MapPin className="size-4 text-primary" aria-hidden="true" />
+                  {area}
+                </>
+              );
+              const cls = "flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm";
+              return (
+                <li key={area}>
+                  {city ? (
+                    <Link to="/garage-auto/$ville" params={{ ville: city.slug }} className={`${cls} hover:border-primary`}>
+                      {inner}
+                    </Link>
+                  ) : (
+                    <span className={cls}>{inner}</span>
+                  )}
+                </li>
+              );
+            })}
           </ul>
 
           <MapEmbed className="h-80" />

@@ -47,7 +47,7 @@ export const quoteSchema = z
         message: "Le consentement est obligatoire pour envoyer la demande.",
       }),
     }),
-    /** Champ piège invisible — doit rester vide */
+    /** Champ piège invisible : doit rester vide */
     company: z.string().max(0).optional().default(""),
     /** Horodatage d'ouverture du formulaire (ms) */
     startedAt: z.number().int().nonnegative().default(0),

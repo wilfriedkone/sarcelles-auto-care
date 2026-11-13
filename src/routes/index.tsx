@@ -6,6 +6,7 @@ import {
   Cog,
   FileText,
   MapPin,
+  MessageCircle,
   Phone,
   ScanLine,
   Star,
@@ -24,7 +25,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Section, SectionHeading } from "@/components/site/Section";
-import { AutoRepairJsonLd } from "@/components/site/JsonLd";
+import { AutoRepairJsonLd, FaqJsonLd } from "@/components/site/JsonLd";
 import { QuoteForm } from "@/components/site/QuoteForm";
 import { MapEmbed } from "@/components/site/MapEmbed";
 import { CallbackForm } from "@/components/site/CallbackForm";
@@ -128,6 +129,7 @@ function Home() {
   return (
     <>
       <AutoRepairJsonLd />
+      <FaqJsonLd items={faq} />
 
       {/* HERO */}
       <section className="relative overflow-hidden">
@@ -360,7 +362,7 @@ function Home() {
         </div>
       </section>
 
-      {/* AVIS — affiché uniquement avec de vrais avis Google */}
+      {/* AVIS : affiché uniquement avec de vrais avis Google */}
       {googleReviews.length > 0 ? (
         <section id="avis" className="border-y border-border bg-card">
           <div className="mx-auto max-w-7xl px-4 py-20 md:py-24">
@@ -450,6 +452,15 @@ function Home() {
                 {c.name} · {c.phone}
               </a>
             ))}
+            <a
+              href={`https://wa.me/${site.whatsapp}`}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="inline-flex min-h-14 items-center gap-2 rounded-xl bg-white px-6 text-lg font-semibold text-black"
+            >
+              <MessageCircle className="size-5" aria-hidden="true" />
+              WhatsApp
+            </a>
           </div>
         </div>
       </section>
@@ -472,7 +483,7 @@ function Home() {
                 <li key={c.tel} className="flex gap-3">
                   <Phone className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden="true" />
                   <a href={`tel:${c.tel}`} className="text-foreground/85 hover:text-foreground">
-                    {c.name} — {c.phone}
+                    {c.name} : {c.phone}
                   </a>
                 </li>
               ))}

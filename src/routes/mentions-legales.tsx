@@ -47,7 +47,7 @@ function LegalPage() {
             E-mail : {site.email}
             <br />
             Téléphones :{" "}
-            {site.contacts.map((c) => `${c.name} ${c.phone}`).join(" — ")}
+            {site.contacts.map((c) => `${c.name} ${c.phone}`).join(", ")}
           </p>
           <p className="mt-3">
             Forme juridique : <em>à compléter</em>

@@ -1,6 +1,6 @@
 /**
  * ---------------------------------------------------------------------------
- * FICHIER DE CONFIGURATION UNIQUE — DSK AUTO 95 GARAGE
+ * FICHIER DE CONFIGURATION UNIQUE : DSK AUTO 95 GARAGE
  * ---------------------------------------------------------------------------
  * Toutes les informations publiques du site sont centralisées ici.
  * Modifiez ce fichier pour mettre à jour le site (coordonnées, horaires,
@@ -21,7 +21,7 @@ export const site = {
   gaMeasurementId: "",
   name: "DSK AUTO 95 GARAGE",
   shortName: "DSK AUTO 95",
-  activity: "Garage automobile — achat, vente, réparation, diagnostic",
+  activity: "Garage automobile : achat, vente, réparation, diagnostic",
   city: "Sarcelles",
   address: {
     street: "6 rue l'Escouvrier",
@@ -34,9 +34,13 @@ export const site = {
   contacts: [
     { name: "Diaby", phone: "07 59 04 48 39", tel: "+33759044839" },
   ],
-  /** Horaires : jours d'ouverture non communiqués — ne rien inventer. */
-  hoursLabel: "Horaires : 9h–19h — appelez-nous avant votre passage",
-  hoursRange: { opens: "09:00", closes: "19:00" },
+  /** Numéro WhatsApp au format international, sans "+" (carte de visite). */
+  whatsapp: "33759044839",
+  /** Horaires (carte de visite) : du lundi au samedi, 9h à 18h sans interruption. */
+  hoursLabel: "Du lundi au samedi, de 9h à 18h sans interruption",
+  hoursShort: "Lun. au sam. 9h-18h",
+  hoursRange: { opens: "09:00", closes: "18:00" },
+  openingDays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
   mapsUrl:
     "https://www.google.com/maps/search/?api=1&query=6+rue+l%27Escouvrier+95200+Sarcelles",
   mapsEmbedUrl:
@@ -179,7 +183,7 @@ export const services: Service[] = [
     seoPage: true,
     metaTitle: "Double de clé voiture à Sarcelles (95) | DSK AUTO 95 GARAGE",
     metaDescription:
-      "Reproduction et programmation de clés de véhicules à Sarcelles (95). Faisabilité selon la marque et le système antidémarrage — contactez le garage.",
+      "Reproduction et programmation de clés de véhicules à Sarcelles (95). Faisabilité selon la marque et le système antidémarrage. Contactez le garage.",
     intro:
       "Nous réalisons la reproduction et la programmation de clés de véhicules. Un justificatif de propriété du véhicule est demandé.",
     points: [

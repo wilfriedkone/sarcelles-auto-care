@@ -49,7 +49,7 @@ export function CallbackForm({ className }: { className?: string }) {
       service: need,
       vehicle: "",
       preferredContact: "telephone",
-      message: `Demande de rappel depuis l'accueil — besoin : ${need}.`,
+      message: `Demande de rappel depuis l'accueil. Besoin : ${need}.`,
       consent,
       company: honeypot.current?.value ?? "",
       startedAt: startedAt.current,

@@ -29,7 +29,7 @@ export function Header() {
             </span>
             <span className="flex items-center gap-2">
               <Clock className="size-3.5 text-primary" aria-hidden="true" />
-              {site.hoursLabel.replace("Horaires : ", "")}
+              {site.hoursLabel}
             </span>
           </div>
           <div className="flex items-center gap-5">
@@ -45,7 +45,7 @@ export function Header() {
         <Link
           to="/"
           className="flex items-center gap-3"
-          aria-label={`${site.name} — accueil`}
+          aria-label={`${site.name}, accueil`}
           onClick={() => setOpen(false)}
         >
           <img

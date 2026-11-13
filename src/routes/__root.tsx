@@ -93,7 +93,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "DSK AUTO 95 GARAGE — Garage automobile à Sarcelles" },
+      { title: "DSK AUTO 95 GARAGE | Garage automobile à Sarcelles" },
       {
         name: "description",
         content:

@@ -1,8 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, MapPin, Phone, Clock } from "lucide-react";
+import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
 import logo from "@/assets/dsk-logo.webp";
 import { seoServices, site } from "@/config/site";
+import { cityPages, deVille } from "@/config/services-content";
 import { openConsentPreferences } from "@/lib/consent";
 
 export function Footer() {
@@ -34,10 +35,16 @@ export function Footer() {
               <li key={c.tel} className="flex gap-2">
                 <Phone className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
                 <a className="hover:text-foreground" href={`tel:${c.tel}`}>
-                  {c.name} — {c.phone}
+                  {c.name} : {c.phone}
                 </a>
               </li>
             ))}
+            <li className="flex gap-2">
+              <MessageCircle className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
+              <a className="hover:text-foreground" href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noreferrer noopener">
+                WhatsApp
+              </a>
+            </li>
             <li className="flex gap-2">
               <Mail className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
               <a className="hover:text-foreground" href={`mailto:${site.email}`}>
@@ -79,9 +86,16 @@ export function Footer() {
           <h2 className="font-display text-sm font-bold uppercase tracking-widest text-primary">
             Zone d'intervention
           </h2>
-          <p className="mt-4 text-sm text-muted-foreground">
-            {site.areas.join(", ")} {site.areaNote}
-          </p>
+          <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+            <li>Sarcelles</li>
+            {cityPages.map((city) => (
+              <li key={city.slug}>
+                <Link to="/garage-auto/$ville" params={{ ville: city.slug }} className="hover:text-foreground">
+                  Garage près {deVille(city.name)}
+                </Link>
+              </li>
+            ))}
+          </ul>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
             <li>
               <Link to="/mentions-legales" className="hover:text-foreground">

@@ -101,7 +101,7 @@ function PrivacyPage() {
             et de la base de données), qui agissent uniquement sur nos
             instructions. Les données de mesure d'audience peuvent être
             transférées aux États-Unis par Google, dans le cadre du Data Privacy
-            Framework UE–États-Unis.
+            Framework entre l'UE et les États-Unis.
           </p>
         </section>
 
@@ -128,12 +128,12 @@ function PrivacyPage() {
           </p>
           <ul className="mt-3 list-disc space-y-2 pl-5">
             <li>
-              <strong className="text-foreground">Mesure d'audience</strong> —
+              <strong className="text-foreground">Mesure d'audience</strong> :
               Google Analytics (Google Ireland Ltd) : statistiques de visite
               avec adresse IP anonymisée. Chargé uniquement après votre accord.
             </li>
             <li>
-              <strong className="text-foreground">Carte Google Maps</strong> —
+              <strong className="text-foreground">Carte Google Maps</strong> :
               affichée uniquement après votre accord ; Google peut alors déposer
               ses propres cookies.
             </li>

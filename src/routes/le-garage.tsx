@@ -100,7 +100,7 @@ function GaragePage() {
                   {site.contacts.map((c) => (
                     <div key={c.tel}>
                       <a className="hover:text-primary" href={`tel:${c.tel}`}>
-                        {c.name} — {c.phone}
+                        {c.name} : {c.phone}
                       </a>
                     </div>
                   ))}

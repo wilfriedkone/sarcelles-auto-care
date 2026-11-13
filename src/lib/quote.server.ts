@@ -35,7 +35,7 @@ export async function hashIp(ip: string): Promise<string> {
     .join("");
 }
 
-/** Vérification Turnstile — active uniquement si la clé secrète est configurée. */
+/** Vérification Turnstile : active uniquement si la clé secrète est configurée. */
 export async function verifyTurnstile(token: string | undefined) {
   const secret = process.env["TURNSTILE_SECRET_KEY"];
   if (!secret) return { configured: false, ok: true };
@@ -85,13 +85,13 @@ export async function notifyByEmail(params: {
           from: "DSK AUTO 95 <onboarding@resend.dev>",
           to: [to],
           subject: `Nouvelle demande ${params.reference}`,
-          html: `<h2>Nouvelle demande — ${params.reference}</h2>
+          html: `<h2>Nouvelle demande ${params.reference}</h2>
 <ul>
 <li><strong>Nom :</strong> ${escapeHtml(params.fullName)}</li>
-<li><strong>Téléphone :</strong> ${escapeHtml(params.phone || "—")}</li>
-<li><strong>E-mail :</strong> ${escapeHtml(params.email || "—")}</li>
-<li><strong>Service :</strong> ${escapeHtml(params.service || "—")}</li>
-<li><strong>Véhicule :</strong> ${escapeHtml(params.vehicle || "—")}</li>
+<li><strong>Téléphone :</strong> ${escapeHtml(params.phone || "non renseigné")}</li>
+<li><strong>E-mail :</strong> ${escapeHtml(params.email || "non renseigné")}</li>
+<li><strong>Service :</strong> ${escapeHtml(params.service || "non renseigné")}</li>
+<li><strong>Véhicule :</strong> ${escapeHtml(params.vehicle || "non renseigné")}</li>
 </ul>
 <p>${escapeHtml(params.message).replace(/\n/g, "<br/>")}</p>`,
         }),

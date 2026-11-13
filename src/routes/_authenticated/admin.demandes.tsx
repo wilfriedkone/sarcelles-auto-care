@@ -296,7 +296,7 @@ function RequestDetail({ row, onDeleted }: { row: Row; onDeleted: () => void }) 
     row.email && {
       label: "E-mail",
       icon: Mail,
-      href: `mailto:${row.email}?subject=${encodeURIComponent(`Votre demande ${row.reference} — ${site.name}`)}&body=${encodeURIComponent(`${replyText}\n\n${primaryContact.name}\n${site.name}\n${primaryContact.phone}`)}`,
+      href: `mailto:${row.email}?subject=${encodeURIComponent(`Votre demande ${row.reference} | ${site.name}`)}&body=${encodeURIComponent(`${replyText}\n\n${primaryContact.name}\n${site.name}\n${primaryContact.phone}`)}`,
     },
   ].filter(Boolean) as { label: string; icon: typeof Phone; href: string; primary?: boolean; external?: boolean }[];
 

@@ -21,6 +21,7 @@ import { Route as ZoneInterventionRouteImport } from './routes/zone-intervention
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AdminMotDePasseOublieRouteImport } from './routes/admin.mot-de-passe-oublie'
 import { Route as AdminNouveauMotDePasseRouteImport } from './routes/admin.nouveau-mot-de-passe'
+import { Route as GarageAutoVilleRouteImport } from './routes/garage-auto.$ville'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
@@ -87,6 +88,11 @@ const AdminNouveauMotDePasseRoute = AdminNouveauMotDePasseRouteImport.update({
   path: '/admin/nouveau-mot-de-passe',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GarageAutoVilleRoute = GarageAutoVilleRouteImport.update({
+  id: '/garage-auto/$ville',
+  path: '/garage-auto/$ville',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesIndexRoute = ServicesIndexRouteImport.update({
   id: '/services/',
   path: '/services/',
@@ -127,6 +133,7 @@ export interface FileRoutesByFullPath {
   '/admin/login': typeof AdminLoginRoute
   '/admin/mot-de-passe-oublie': typeof AdminMotDePasseOublieRoute
   '/admin/nouveau-mot-de-passe': typeof AdminNouveauMotDePasseRoute
+  '/garage-auto/$ville': typeof GarageAutoVilleRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/': typeof ServicesIndexRoute
   '/admin/demandes': typeof AuthenticatedAdminDemandesRoute
@@ -145,6 +152,7 @@ export interface FileRoutesByTo {
   '/admin/login': typeof AdminLoginRoute
   '/admin/mot-de-passe-oublie': typeof AdminMotDePasseOublieRoute
   '/admin/nouveau-mot-de-passe': typeof AdminNouveauMotDePasseRoute
+  '/garage-auto/$ville': typeof GarageAutoVilleRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services': typeof ServicesIndexRoute
   '/admin/demandes': typeof AuthenticatedAdminDemandesRoute
@@ -165,6 +173,7 @@ export interface FileRoutesById {
   '/admin/login': typeof AdminLoginRoute
   '/admin/mot-de-passe-oublie': typeof AdminMotDePasseOublieRoute
   '/admin/nouveau-mot-de-passe': typeof AdminNouveauMotDePasseRoute
+  '/garage-auto/$ville': typeof GarageAutoVilleRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/': typeof ServicesIndexRoute
   '/_authenticated/admin/demandes': typeof AuthenticatedAdminDemandesRoute
@@ -185,6 +194,7 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/admin/mot-de-passe-oublie'
     | '/admin/nouveau-mot-de-passe'
+    | '/garage-auto/$ville'
     | '/services/$slug'
     | '/services/'
     | '/admin/demandes'
@@ -203,6 +213,7 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/admin/mot-de-passe-oublie'
     | '/admin/nouveau-mot-de-passe'
+    | '/garage-auto/$ville'
     | '/services/$slug'
     | '/services'
     | '/admin/demandes'
@@ -222,6 +233,7 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/admin/mot-de-passe-oublie'
     | '/admin/nouveau-mot-de-passe'
+    | '/garage-auto/$ville'
     | '/services/$slug'
     | '/services/'
     | '/_authenticated/admin/demandes'
@@ -242,6 +254,7 @@ export interface RootRouteChildren {
   AdminLoginRoute: typeof AdminLoginRoute
   AdminMotDePasseOublieRoute: typeof AdminMotDePasseOublieRoute
   AdminNouveauMotDePasseRoute: typeof AdminNouveauMotDePasseRoute
+  GarageAutoVilleRoute: typeof GarageAutoVilleRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
 }
@@ -332,6 +345,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminNouveauMotDePasseRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/garage-auto/$ville': {
+      id: '/garage-auto/$ville'
+      path: '/garage-auto/$ville'
+      fullPath: '/garage-auto/$ville'
+      preLoaderRoute: typeof GarageAutoVilleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/': {
       id: '/services/'
       path: '/services'
@@ -398,6 +418,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminLoginRoute: AdminLoginRoute,
   AdminMotDePasseOublieRoute: AdminMotDePasseOublieRoute,
   AdminNouveauMotDePasseRoute: AdminNouveauMotDePasseRoute,
+  GarageAutoVilleRoute: GarageAutoVilleRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   ServicesIndexRoute: ServicesIndexRoute,
 }
