@@ -14,6 +14,7 @@ const needs = [
   "Diagnostic / voyant allumé",
   "Entretien, vidange, freins",
   "Panne mécanique ou électrique",
+  "Réparation prise en charge par l'assurance",
   "Achat ou vente de véhicule",
   "Autre demande",
 ];

@@ -9,6 +9,7 @@ import {
   MessageCircle,
   Phone,
   ScanLine,
+  ShieldCheck,
   Star,
   Wrench,
 } from "lucide-react";
@@ -98,13 +99,14 @@ const marqueeItems = [
   "Freinage",
   "Climatisation",
   "Pré-contrôle technique",
+  "Prise en charge assurance",
   "Achat & vente",
 ];
 
 const trust = [
   { icon: FileText, title: "Devis d'abord", text: "Rien n'est fait sans votre accord" },
   { icon: ScanLine, title: "Diagnostic", text: "Valise électronique multimarque" },
-  { icon: Wrench, title: "Toutes marques", text: "Du courant au technique" },
+  { icon: ShieldCheck, title: "Assurances", text: "On s'occupe des démarches" },
   { icon: MapPin, title: "Sarcelles (95)", text: "Garges, Villiers-le-Bel, Écouen…" },
 ];
 
@@ -302,6 +304,52 @@ function Home() {
                   {step.title.replace(/^\d+\.\s*/, "")}
                 </h3>
                 <p className="mt-1.5 text-[15px] text-muted-foreground">{step.text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* ASSURANCES */}
+      <section id="assurances" className="mx-auto max-w-7xl px-4 pt-20 md:pt-28">
+        <div className="reveal grid gap-10 rounded-3xl border border-border bg-card p-7 md:p-12 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+          <div>
+            <p className={eyebrow}>Assurances</p>
+            <h2 className={bigTitle}>Votre véhicule est assuré ? On s'occupe des démarches</h2>
+            <p className="mt-5 text-lg text-foreground/85">
+              Pour une réparation couverte par votre contrat, choisissez notre garage : nous
+              gérons les échanges avec votre assurance et l'expert. La loi vous laisse le libre
+              choix du réparateur.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button asChild size="lg" className="h-12">
+                <Link to="/services/$slug" params={{ slug: "prise-en-charge-assurance" }}>
+                  Comment ça marche
+                  <ArrowRight className="size-4" aria-hidden="true" />
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="h-12">
+                <a href={`tel:${primaryContact.tel}`}>
+                  <Phone className="size-4" aria-hidden="true" />
+                  Appeler {primaryContact.name}
+                </a>
+              </Button>
+            </div>
+          </div>
+          <ol className="space-y-4">
+            {[
+              ["Vous déclarez le sinistre", "Auprès de votre assurance, en indiquant DSK AUTO 95 GARAGE."],
+              ["L'expert passe", "Il examine le véhicule et chiffre la réparation avec nous."],
+              ["Nous réparons", "Après accord. Vous ne réglez que ce qui reste à votre charge."],
+            ].map(([title, text], index) => (
+              <li key={title} className="flex gap-4 rounded-2xl border border-border bg-background p-5">
+                <span className="font-display text-4xl leading-none font-extrabold text-primary">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span>
+                  <span className="block font-semibold">{title}</span>
+                  <span className="mt-1 block text-sm text-muted-foreground">{text}</span>
+                </span>
               </li>
             ))}
           </ol>

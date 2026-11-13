@@ -82,7 +82,8 @@ export type ServiceIconName =
   | "droplet"
   | "snowflake"
   | "clipboard"
-  | "car";
+  | "car"
+  | "shield";
 
 export type Service = {
   slug: string;
@@ -250,6 +251,25 @@ export const services: Service[] = [
     ],
   },
   {
+    slug: "prise-en-charge-assurance",
+    title: "Réparations prises en charge par l'assurance",
+    short:
+      "Véhicule assuré ? Nous nous occupons des démarches avec votre assurance, de l'expertise à la réparation.",
+    icon: "shield",
+    seoPage: true,
+    metaTitle: "Garage qui travaille avec les assurances à Sarcelles | DSK AUTO 95",
+    metaDescription:
+      "Sinistre couvert par votre assurance ? À Sarcelles (95), DSK AUTO 95 GARAGE s'occupe des démarches avec l'assureur et l'expert, puis de la réparation. Vous êtes libre de choisir votre garage.",
+    intro:
+      "Votre véhicule est assuré et la réparation est couverte par votre contrat ? Vous pouvez choisir notre garage : nous nous occupons des démarches avec votre assurance, du passage de l'expert jusqu'à la réparation.",
+    points: [
+      "Aide à la déclaration auprès de votre assureur",
+      "Échanges avec l'assurance et l'expert",
+      "Réparation selon le rapport d'expertise, après votre accord",
+      "Vous ne réglez que ce qui reste à votre charge selon votre contrat (franchise)",
+    ],
+  },
+  {
     slug: "achat-vente-vehicules",
     title: "Achat et vente de véhicules",
     short:
@@ -292,6 +312,10 @@ export const steps = [
 ];
 
 export const faq = [
+  {
+    q: "Travaillez-vous avec les assurances ?",
+    a: "Oui. Si votre véhicule est assuré et que la réparation est couverte par votre contrat, nous nous occupons des démarches avec votre assurance et l'expert. Vous êtes libre de choisir votre garage : indiquez simplement DSK AUTO 95 GARAGE à votre assureur.",
+  },
   {
     q: "Faut-il prendre rendez-vous avant de passer au garage ?",
     a: "Oui, c'est fortement conseillé. Appelez-nous avant votre passage afin de vérifier nos disponibilités et le temps d'immobilisation nécessaire.",

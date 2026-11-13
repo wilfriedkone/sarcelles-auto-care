@@ -186,6 +186,27 @@ export const servicesContent: Record<string, ServiceContent> = {
       },
     ],
   },
+  "prise-en-charge-assurance": {
+    signs: [
+      "Vous avez déclaré un sinistre à votre assurance (accident, choc, vandalisme…)",
+      "Votre assureur vous demande où le véhicule sera réparé",
+      "Un expert doit examiner le véhicule avant la réparation",
+    ],
+    faq: [
+      {
+        q: "Puis-je choisir mon garage si l'assurance m'en propose un autre ?",
+        a: "Oui. La loi vous laisse le libre choix du réparateur, et votre assureur doit vous en informer. Donnez-lui simplement le nom et l'adresse du garage : DSK AUTO 95 GARAGE, 6 rue l'Escouvrier, 95200 Sarcelles.",
+      },
+      {
+        q: "Comment se passe une réparation prise en charge ?",
+        a: "Vous déclarez le sinistre à votre assurance et indiquez notre garage. Un expert examine le véhicule et chiffre la réparation. Après accord, nous réparons, et l'assurance règle sa part selon votre contrat.",
+      },
+      {
+        q: "Que dois-je apporter au garage ?",
+        a: "La carte grise, votre attestation ou contrat d'assurance et, si vous l'avez déjà, le numéro de dossier du sinistre.",
+      },
+    ],
+  },
   "achat-vente-vehicules": {
     signs: [
       "Vous voulez vendre votre véhicule rapidement",

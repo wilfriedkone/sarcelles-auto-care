@@ -5,6 +5,7 @@ import {
   Droplet,
   KeyRound,
   ScanLine,
+  ShieldCheck,
   Snowflake,
   Wrench,
   Zap,
@@ -23,6 +24,7 @@ const map: Record<ServiceIconName, LucideIcon> = {
   snowflake: Snowflake,
   clipboard: ClipboardCheck,
   car: Car,
+  shield: ShieldCheck,
 };
 
 export function ServiceIcon({
